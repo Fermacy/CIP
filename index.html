@@ -174,28 +174,39 @@ A long, long time ago, there was nothing but darkness. Can you imagine that? No 
     </div>
 
   <script type="module">
-    import Chatbox from 'https://cdn.jsdelivr.net/npm/@chaindesk/embeds@latest/dist/chatbox/index.js';
+  import Chatbox from 'https://cdn.jsdelivr.net/npm/@chaindesk/embeds@latest/dist/chatbox/index.js';
 
-    const widget = await Chatbox.initBubble({
-      agentId: 'cm9qpoups04c1iehwuuzqckba',
+  const widget = await Chatbox.initBubble({
+    agentId: 'cm9qpoups04c1iehwuuzqckba',
+    
+    // optional 
+    // If provided will create a contact for the user and link it to the conversation
+    contact: {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'customer@email.com',
+      phoneNumber: '+33612345644',
+      userId: '42424242',
+    },
+    // optional
+    // Override initial messages
+    initialMessages: [
+      'Hello Georges how are you doing today?',
+      'How can I help you ?',
+    ],
+    // optional
+    // Provided context will be appended to the Agent system prompt
+    context: "The user you are talking to is John. Start by Greeting him by his name.",
+  });
 
-      contact: {
-        firstName: 'Anon',
-        lastName: 'Doe',
-        email: 'customer@email.com',
-        phoneNumber: '+33612345644',
-        userId: '42424242',
-      },
-      initialMessages: [
-        'Hello Georges how are you doing today?',
-        'How can I help you ?',
-      ],
-      context: "The user you are talking to is CottonMan. Start by Greeting him by his name.",
-    });
+  // open the chat bubble
+  widget.open();
 
-    widget.open();
-    widget.close()
-    widget.toggle()
-  </script>
+  // close the chat bubble
+  widget.close()
+
+  // or 
+  widget.toggle()
+</script>
 </body>
 </html>
